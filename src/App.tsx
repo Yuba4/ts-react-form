@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
 
-function App() {
+import { List } from "./components/List";
+
+type Istate = {
+  people: {
+    name: string;
+    age: number;
+    url: string;
+    note?: string;
+  }[];
+};
+
+const App = () => {
+  const [people, setPeople] = useState<Istate["people"]>([
+    { name: "山田太郎", age: 24, url: "yahoo.com", note: "彼はイケメン" },
+  ]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <List people={people} />
     </div>
   );
-}
+};
 
 export default App;
